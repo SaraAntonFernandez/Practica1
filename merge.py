@@ -30,6 +30,7 @@ def consumer(consumed, buffer, empty, non_empty, lock):
 	while not running: # mientras haya procesos...
 		lock.acquire()
 		consumed.append(buffer[p]) # lo consumo
+		print(f"Consumiendo.. {buffer[p]}")
 		lock.release()
 		
 		empty[p].release() # hay que producir otro
