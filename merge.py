@@ -51,7 +51,6 @@ def minimum_index(buffer):
 
 
 def main():
-	running = Array('b',[True for i in range(NPROD)])
 	buffer = Array('i',[0]*NPROD)
 	empty = [BoundedSemaphore(1) for i in range(NPROD)] # lista de semaforos, uno por productor
 	non_empty = [Semaphore(0) for i in range(NPROD)]
