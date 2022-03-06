@@ -12,12 +12,12 @@ def producer(pid, buffer, running, empty, non_empty, lock): # cada productor pro
 		empty[pid].acquire()
 		
 		lock.acquire()
-		print(f"Produciendo... {pid}")
+		print(f"Esta produciendo el productor {pid}")
 		buffer[pid] += randint(0, 5)
 		lock.release()
 		
 		non_empty[pid].release()
-		print(f"Producido {pid}")
+		print(f"Ha terminado de producir el productor {pid}")
 	buffer[pid] = -1
     
 def consumer(consumed, buffer, empty, non_empty, lock):
@@ -30,7 +30,7 @@ def consumer(consumed, buffer, empty, non_empty, lock):
 	while not running: # mientras haya procesos...
 		lock.acquire()
 		consumed.append(buffer[p]) # lo consumo
-		print(f"Consumiendo.. {buffer[p]}")
+		print(f"Consumiendo... {buffer[p]}")
 		lock.release()
 		
 		empty[p].release() # hay que producir otro
